@@ -1,0 +1,41 @@
+<!--
+  It was in a vue 3 vuetify 3 app :
+  index.html is linked to App.vue
+  in App.vue : <v-app> [...] <v-main> [...] <RouterView/> [...]
+  The page was some UserAdmin.vue (classes are shorthand from vuetify, usually self explenatory) :
+  Mainly defining a flex container, taking full height and all children needs to take full height (fill-height == h-100 == style='height: 100%')
+-->
+<template>
+  <div class="d-flex flex-column fill-height">
+    <v-tabs
+        v-model="selectedTab"
+        id="userAdmin-tabs"
+        class="navTabs"
+        fixed-tabs
+    >
+      <v-tab
+          v-for="{key, label} in configurationTabs"
+          :key="key"
+          :value="`tab-${key}`"
+          :id="`tab-link-${key}`"
+          @click="click(key)"
+      >
+        {{ $t(label) }}
+      </v-tab>
+    </v-tabs>
+
+    <v-tabs-window
+        v-model="selectedTab"
+        class="fill-height"
+    >
+      <v-tabs-window-item
+          v-for="{key, label, component} in configurationTabs"
+          :value="`tab-${key}`"
+          :key="key"
+          class="fill-height"
+      >
+        <component :is="component"/>
+      </v-tabs-window-item>
+    </v-tabs-window>
+  </div>
+</template>
