@@ -1,0 +1,72 @@
+<!--
+  Sanitized from not necessary content in html and <script> part,
+  no additionnal style (done on firefox : scrollbar are "always shown" on chrome, might differ a bit)
+
+* {
+  scrollbar-width: thin;
+}
+-->
+<template>
+  <v-container fluid class="d-flex h-100 flex-column">
+    <v-row class="flex-grow-1">
+      <v-col cols="3" class="d-flex flex-column">
+        <SearchList class="flex-1-1">
+        </SearchList>
+        <!-- Template of SearchList
+        <template>
+          <v-card class="d-flex flex-column">
+            <v-toolbar> [...] </v-toolbar>
+            <v-list class="flex-1-1-0 overflow-y-scroll">
+              <v-list-item> [...] </v-list-item>
+            </v-list>
+          </v-card>
+        </template>
+        -->
+      </v-col>
+      <v-col cols="9" class="d-flex flex-column">
+        <v-row>
+          <v-col cols="6">
+            <v-card>
+              <v-toolbar> [...] </v-toolbar>
+              <v-form> [...] </v-form>
+            </v-card>
+          </v-col>
+          <v-col cols="6" class="d-flex flex-column">
+            <v-card class="flex-1-1 d-flex flex-column">
+              <v-toolbar> [...] </v-toolbar>
+              <v-list
+                  v-model="selectedUserIndex"
+                  class="flex-1-1-0 overflow-y-auto"
+              >
+                <v-list-item v-for="(user, i) in users" :key="i"/>
+              </v-list>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-row class="flex-1-1-100">
+          <v-col cols="6" class="d-flex flex-column">
+            <v-card class="d-flex flex-column flex-grow-1">
+              <RoleSelector/>
+              <!-- template of RoleSelector
+              <template>
+                <v-toolbar> [...] </v-toolbar>
+                <div class="overflow-y-auto flex-1-1-0"> [...] </div>
+              </template>
+              -->
+            </v-card>
+          </v-col>
+          <v-col cols="6" class="d-flex flex-column">
+            <v-card class="d-flex flex-column flex-grow-1">
+              <v-toolbar> [...] </v-toolbar>
+              <v-list
+                  v-model="selectedProjectIndex"
+                  class="flex-1-1-0 overflow-y-auto"
+              >
+                <v-list-item v-for="(project, i) in projects" :key="i"/>
+              </v-list>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
